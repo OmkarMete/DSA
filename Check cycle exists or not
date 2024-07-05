@@ -1,0 +1,78 @@
+// Cycle code
+
+#include<iostream>
+using namespace std;
+
+class node {
+public:
+    int data;
+    node* next;
+
+    node(int data) {
+        this->data = data;
+        next = NULL;
+    }
+};
+
+class list {
+public:
+    node* head;
+    node* tail;
+
+    list() {
+        head = NULL;
+        tail = NULL;
+    }
+
+    void push_front(int val) {
+        node* newNode = new node(val);
+        if (head == NULL) {
+            head = tail = newNode;
+        } else {
+            newNode->next = head;
+            head = newNode;
+        }
+    }
+
+    void printList() {
+        node* temp = head;
+        while (temp != NULL) {
+            cout << temp->data << " -> ";
+            temp = temp->next;
+        }
+        cout << "NULL\n";
+    }
+};
+
+bool isCycle(node* head) {
+    node* slow = head;
+    node* fast = head;
+
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+
+        if (slow == fast) {
+            cout << "Cycle exists\n";
+            return true;
+        }
+    }
+    cout << "Cycle doesn't exist\n";
+    return false;
+}
+
+int main() {
+    list l1;
+    l1.push_front(7);
+    l1.push_front(6);
+    l1.push_front(5);
+    l1.push_front(4);
+    l1.push_front(3);
+    l1.push_front(2);
+    l1.push_front(0);
+
+    l1.tail->next = l1.head; 
+    isCycle(l1.head);
+
+    return 0;
+}
