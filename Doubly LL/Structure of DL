@@ -1,0 +1,27 @@
+// Structure of DL
+
+#include<iostream>
+using namespace  std;
+
+class node{
+public:
+    int data;
+    node* next;
+    node* prev;
+
+    node(int val){
+        data = val;
+        prev = next = NULL;
+    }
+};
+
+class DoublyList {
+public:
+    node* head;
+    node* tail;
+
+};
+int main(){
+    DoublyList dl;
+    return 0;
+}
