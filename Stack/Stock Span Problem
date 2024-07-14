@@ -1,0 +1,39 @@
+// Stock Span Problem
+
+#include <iostream>
+#include <stack>
+#include <vector>
+using namespace std;
+
+void stackSpanProb(vector<int> stock, vector<int> spans){
+
+    stack<int> s;
+    s.push(0);
+    spans[0] = 1;
+
+    for(int i=1; i<stock.size(); i++){
+        int currPrice = stock[i];
+
+        while(!s.empty() && currPrice >= stock[s.top()]){
+            s.pop();
+        }
+        if(s.empty()){
+            spans[i] = i + 1;
+        } else {
+            int prevHigh = s.top();
+            spans[i] = i - prevHigh;
+        }
+    }
+    for(int i=0; i<spans.size(); i++){
+        cout << spans[i] <<" ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> stock = {100, 80, 60, 70, 60, 85, 100};
+    vector<int> spans(stock.size(), 0);
+
+    stackSpanProb(stock, spans);    
+    return 0;
+}
