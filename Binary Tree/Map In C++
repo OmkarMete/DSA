@@ -1,0 +1,24 @@
+// Map In C++
+// It is STL Container
+
+#include<iostream>
+#include<map>
+#include<string>
+using namespace std;
+
+int main() {
+    map<int , string > m ;
+
+    m[100] = "Omkar";
+    m[101] = "XYZ";
+    m[102] = "UVW";
+    m[103] = "Jethalal";
+
+    cout << m[103] << endl;
+    cout << m.count(100) << endl;
+
+    for(auto it : m) {
+        cout << "Key = " << it.first <<" , " << "Value = " << it.second << endl;
+    }
+    return 0;
+}
