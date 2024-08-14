@@ -1,0 +1,74 @@
+// Convert BST TO Balance BST
+/* APPROACH
+1) first find sorted sequence of orignal array
+2) And Then Convert this sequence into Balance BST
+*/
+#include<iostream>
+#include<vector>
+using namespace std;
+
+class node {
+public:
+    int data;
+    node* left;
+    node* right;
+
+    node(int data) {
+        this->data = data;
+        left = right = NULL;
+    }
+};
+
+node* buildBstFromSorted(vector<int>& arr, int st, int end) {
+    if (st > end) {
+        return NULL;
+    }
+
+    int mid = st + (end - st) / 2;
+    node* curr = new node(arr[mid]);
+    curr->left = buildBstFromSorted(arr, st, mid - 1);
+    curr->right = buildBstFromSorted(arr, mid + 1, end);
+
+    return curr;
+}
+
+void getInorder(node* root, vector<int>& nodes) {
+    if (root == NULL) {
+        return;
+    }
+    getInorder(root->left, nodes);
+    nodes.push_back(root->data);
+    getInorder(root->right, nodes);
+}
+
+node* balanceBST(node* root) {
+    vector<int> nodes;
+    getInorder(root, nodes);
+    return buildBstFromSorted(nodes, 0, nodes.size() - 1);
+}
+
+void preorder(node* root) {
+    if (root == NULL) {
+        return;
+    }
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
+int main() {
+    node* root = new node(6);
+    root->left = new node(5);
+    root->left->left = new node(4);
+    root->left->left->left = new node(3);
+
+    root->right = new node(7);
+    root->right->right = new node(8);
+    root->right->right->right = new node(9);
+
+    root = balanceBST(root);
+    preorder(root);
+    cout << endl;
+
+    return 0;
+}
