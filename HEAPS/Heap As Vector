@@ -1,0 +1,87 @@
+// Heap As An Array / Vector
+
+/* For find the left or right child of parent for ZERO Based indexing
+
+Left Child = 2 * i + 1
+Right Child = 2 * i + 2
+For Parent = (child idx - 1) / 2 
+*/
+
+#include<iostream>
+#include<vector>
+#include<string>
+using namespace std;
+
+class Heap { 
+    vector<int> vec;
+public:
+    void push(int val) {
+
+        vec.push_back(val);
+        int x = vec.size() - 1;
+        int par1 = (x-1) / 2;
+
+        while(par1 >= 0 && vec[x] > vec[par1]) {
+            swap(vec[x], vec[par1]);
+            x = par1;
+            par1 = (x-1) / 2;
+        }
+    }
+
+    void heapify(int i) {
+
+        if(i >= vec.size()) {
+            return;
+        }
+
+        int l = 2*i + 1;
+        int r = 2*i + 2;
+
+        int maxIdx = i;
+
+        if(l < vec.size() && vec[l] > vec[maxIdx]) {
+            maxIdx = l;
+        }
+        
+        if(r < vec.size() && vec[r] > vec[maxIdx]) {
+            maxIdx = r;
+        }
+
+        swap(vec[i] , vec[maxIdx]);
+        if(maxIdx != i) {
+            heapify(maxIdx);
+        }
+    }
+    /*
+        1) swap(root, last)
+        2) delete this lastIDX
+        3) fix the heap use heapify
+    */   
+    void pop() {
+
+        swap(vec[0] , vec[vec.size() - 1]);
+        vec.pop_back();
+        heapify(0);
+    }
+
+    int top() {
+        return vec[0];
+    }
+
+    bool empty() {
+        return vec.size() == 0;
+    }
+};
+int main() {
+    Heap heap;
+
+    heap.push(50);
+    heap.push(40);
+    heap.push(100);
+
+    while(!heap.empty()) {
+    cout <<"Top : " << heap.top() << endl ;
+    heap.pop();
+    }
+    return 0;
+}
