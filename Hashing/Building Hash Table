@@ -113,18 +113,33 @@ public:
         }
         return -1;
     }
+
+    void print() {
+        for(int i=0; i<totSize; i++) {
+            cout<<"idx : "<< i <<"->";
+            Node* temp = table[i];
+            while(temp != NULL) {
+                cout <<"[" << temp->key <<"," << temp->value <<"] ->";
+                temp = temp->next;
+            }
+            cout << endl;
+        }
+    }
 };
 
 int main() {
-    HashTable HT(6);
+    HashTable HT(5);
     HT.insert("india" , 150);
-    HT.insert("CHINA" , 150);
+    HT.insert("CHINA" , 170);
     HT.insert("US" , 50);
     HT.insert("NEPAL" , 10);
     HT.insert("UK" , 20);
 
-    if(HT.exist("UKkk")) {
-        cout <<"INDIA Population is : " << HT.search("UKkk");
+    if(HT.exist("CHINA")) {
+        cout <<"CHINA Population is : " << HT.search("CHINA");
     }
+    cout << endl;
+
+    HT.print();
     return 0;
 }
