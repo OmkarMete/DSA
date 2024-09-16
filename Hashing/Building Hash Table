@@ -1,0 +1,130 @@
+// Building Hash Table
+
+#include<iostream>
+#include<vector>
+#include<string>
+using namespace std;
+
+class Node {
+public:
+    string key;
+    int value;
+    Node* next;
+
+    Node(string key, int val) {
+        this->key = key;
+        this->value = value;
+        next = NULL;
+    }
+
+    ~Node() {
+        if(next != NULL) {
+            delete next;
+        }
+    }
+};
+class HashTable {
+    int totSize;
+    int currSize; //// For Rehashing
+    Node** table;
+
+    int HashFunction(string key) {
+        int idx = 0;
+        for(int i=0; i<key.size(); i++) {
+            idx = (idx +(key[i] * key[i])) % totSize;
+        }
+        return idx % totSize;
+    }
+
+    void rehash() {
+        Node** oldTable = table;
+        int oldSize = totSize;
+
+        totSize = 2 * totSize;
+        currSize = 0;
+        table = new Node* [totSize];
+
+        for(int i=0; i<totSize; i++) {
+            table[i] = NULL;
+        }
+
+        for(int i=0; i<oldSize; i++) {
+            Node* temp = oldTable[i];
+            while(temp != NULL) {
+                insert(temp->key, temp->value);
+                temp = temp->next;
+            }
+            if(oldTable[i] != NULL) {
+                delete oldTable[i];
+            }
+        }
+        delete[] oldTable;
+    }
+public:
+    HashTable(int size) {
+        totSize = size;
+        currSize = 0;
+        table = new Node*[totSize];
+
+        for(int i=0; i<totSize; i++) {
+            table[i] = NULL;
+        }
+    }
+
+    void insert(string key , int val) {
+        int idx = HashFunction(key);
+
+        Node* newNode = new Node(key , val);
+
+        newNode->next = table[idx];
+        table[idx] = newNode;
+
+        currSize++;
+
+        double lembda = currSize / (double)totSize;
+        if(lembda > 1 ) {
+            rehash();
+        }
+    }
+    bool exist(string key) {
+        int idx = HashFunction(key);
+
+        Node* temp = table[idx];
+        while(temp != NULL) {
+            if(temp->key == key) {
+                return true;
+            }
+            temp = temp->next;
+        }
+        return false;
+    }
+    void remove(string key) {
+
+    }
+    int search(string key) {
+        int idx = HashFunction(key);
+
+        Node* temp = table[idx];
+        while(temp != NULL) {
+            if(temp->key == key) {
+                return temp->value;
+            }
+            temp = temp->next;
+        }
+        return -1;
+    }
+};
+
+int main() {
+    HashTable HT(6);
+    HT.insert("india" , 150);
+    HT.insert("CHINA" , 150);
+    HT.insert("US" , 50);
+    HT.insert("NEPAL" , 10);
+    HT.insert("UK" , 20);
+
+    if(HT.exist("UKkk")) {
+        cout <<"INDIA Population is : " << HT.search("UKkk");
+    }
+    return 0;
+}
