@@ -1,0 +1,24 @@
+// 1) Unordered Map's
+
+#include<iostream>
+#include<unordered_map>
+using namespace std;
+
+int main() {
+    unordered_map<string , int> u;
+    u["INDIA"] = 150;
+    u["USA"] = 120;
+    u["UK"] = 110;
+    u["CHAINA"] = 900;
+
+    for(pair<string, int> country : u) {
+        cout << country.first <<"," << country.second << endl;
+    }
+
+    if(u.count("UK")) {
+        cout <<"UK Exists!!!";
+    } else {
+        cout <<"UK Not Exists!!!";
+    }
+    return 0;
+}
