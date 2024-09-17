@@ -1,0 +1,28 @@
+// Pair or target Sum 
+/*
+◉i.s Pair(x + y) = target
+◉Ex: [1,2,7,11,15,5,9] & Target = 9
+◉ANS:- idx(1,2)
+◉
+*/
+
+#include<iostream>
+#include<unordered_map>
+using namespace std;
+
+int main() {
+    int arr[7] = {1,2,7,11,15,5,9};
+    int n = 7;
+    int target = 9;
+    unordered_map<int ,int > um;
+
+    for(int i=0; i<n; i++ ) {
+        int comp = target - arr[i];
+        if(um.count(comp)) {
+            cout <<"IDX Of Sum = " << um[comp] <<"," << i << endl;
+            break;
+        }
+        um[arr[i]] = i;
+    }
+    return 0;
+}
