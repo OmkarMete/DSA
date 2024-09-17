@@ -1,0 +1,27 @@
+// 3) Unorderd Set's
+
+#include<iostream>
+#include<unordered_set>
+using namespace  std;
+
+int main(){
+    unordered_set<int> us;
+    us.insert(1);
+    us.insert(2);
+    us.insert(3);
+    us.insert(4);
+
+    cout<< us.size() << endl;
+
+    if(us.find(3) != us.end()) {
+        cout <<"3 Exist";
+    } else {
+        cout <<"3 Not Exist";
+    }
+    cout << endl;
+
+    for(auto el : us) {
+        cout << el <<" ";
+    }
+    return 0;
+}
