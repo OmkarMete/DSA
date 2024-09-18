@@ -1,0 +1,52 @@
+// Union & Intersection
+
+#include<iostream>
+#include<unordered_set> 
+#include<vector>
+using namespace std;
+
+void getUnion(vector<int> arr1, vector<int> arr2) {
+    unordered_set<int> s;
+
+    for(int el : arr1) {
+        s.insert(el);
+    }
+    
+    for(int el : arr2) {
+        s.insert(el);
+    }
+    
+    for(int el : s) {
+        cout << el <<" ";
+    }
+    cout << endl;
+
+}
+
+void getIntersction(vector<int> arr1, vector<int> arr2){
+    unordered_set<int> m;
+
+    for(int el : arr1) {
+        m.insert(el);
+    }
+
+    for(int el : arr2) {
+        if(m.find(el) != m.end()) {
+            cout << el <<" ";
+            m.erase(el);
+        }
+    }
+    cout << endl;
+    
+}
+int main() {
+    vector<int> arr1 = {7,3,9};
+    vector<int> arr2 = {5,3,9,2,9,4};
+
+    cout <<"Union of both arr : ";
+    getUnion(arr1 , arr2);
+
+    cout <<"Internsection of both arr : ";
+    getIntersction(arr1, arr2);
+    return 0;
+}
