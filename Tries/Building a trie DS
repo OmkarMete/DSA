@@ -1,0 +1,59 @@
+// Building a trie DS  
+
+#include<iostream>
+#include<vector>
+#include<string>
+#include<unordered_map>
+using namespace std;
+
+class Node {
+public:
+    unordered_map<char, Node*> child;
+    bool endOfword;
+
+    Node() {
+        endOfword = false;
+    }
+};
+
+class Trie {
+    Node* root;
+public:
+    Trie() {
+        root = new Node();
+    }
+    
+    void insert(string key) {
+        Node* temp = root;
+        for(int i=0; i<key.size(); i++) {
+            if(temp->child.count(key[i]) == 0) {
+                temp->child[key[i]] = new Node();
+            }
+            temp = temp->child[key[i]];
+        }
+        temp->endOfword = true;
+    }
+
+    bool search(string key) {
+        Node* temp = root;
+        for(int i=0; i<key.size(); i++) {
+            if(temp->child.count(key[i]) == 0) {
+                return false;
+            } else {
+                temp = temp->child[key[i]];
+            }
+        }
+        return temp->endOfword;
+    }
+};
+int main() {
+    vector<string> words = {"the","a","three","their","any","thee"};
+    Trie trie;
+
+    for(int i=0; i<words.size(); i++) {
+        trie.insert(words[i]);
+    }
+    
+    cout << trie.search("a") << endl;
+    return 0;
+}
