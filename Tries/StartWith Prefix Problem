@@ -1,0 +1,74 @@
+// StartWith Prefix Problem
+
+#include<iostream>
+#include<vector>
+#include<string>
+#include<unordered_map>
+using namespace std;
+
+class Node {
+public:
+    unordered_map<char, Node*> child;
+    bool endOfword;
+    Node() {
+        endOfword = false;
+    }
+};
+
+class Trie {
+    Node* root;
+public:
+    Trie() {
+        root = new Node();
+    }
+    
+    void insert(string key) {
+        Node* temp = root;
+        for(int i=0; i<key.size(); i++) {
+            if(temp->child.count(key[i]) == 0) {
+                temp->child[key[i]] = new Node();
+            }
+            temp = temp->child[key[i]];
+        }
+        temp->endOfword = true;
+    }
+
+    bool search(string key) {
+        Node* temp = root;
+        for(int i=0; i<key.size(); i++) {
+            if(temp->child.count(key[i]) == 0) {
+                return false;
+            } else {
+                temp = temp->child[key[i]];
+            }
+        }
+        return temp->endOfword;
+    }
+
+    bool staresWith(string prefix) {
+        Node* temp = root;
+
+        for(int i=0; i<prefix.size(); i++) {
+            if(temp->child[prefix[i]]) {
+                temp = temp->child[prefix[i]];
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+
+int main() {
+    vector<string> words = {"apple", "app", "mango","man", "woman"};
+
+    Trie t;
+
+    for(int i=0; i< words.size(); i++) {
+        t.insert(words[i]);
+    }
+    
+    cout << t.staresWith("man") << endl;
+    return 0;
+}
