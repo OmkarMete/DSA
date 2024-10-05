@@ -1,0 +1,44 @@
+// Create Undirected Graph With Weights 
+
+#include<iostream>
+#include<vector>
+#include<list>
+using namespace std;
+
+class Graph {
+    int v;
+    list<pair<int, int>>* l;  // Adjacency list of pairs (vertex, weight)
+public:
+    Graph(int v) {
+        this->v = v;
+        l = new list<pair<int, int>>[v];
+    }
+
+    void addEdge(int u, int v, int weight) {  // Now include weight
+        l[u].push_back(make_pair(v, weight));  // Add edge u -> v with weight
+        l[v].push_back(make_pair(u, weight));  // Add edge v -> u with weight for undirected graph
+    }
+
+    void print() {
+        for(int u = 0; u < v; u++) {
+            cout << u << " : ";
+            for(auto& neighbour : l[u]) {
+                cout << "(" << neighbour.first << ", " << neighbour.second << ") "; // Print (vertex, weight)
+            }
+            cout << endl;
+        }
+    }
+};
+
+int main(){
+    Graph g(5);
+    // Add edges with weights for the undirected graph
+    g.addEdge(0, 1, 10);
+    g.addEdge(1, 2, 20);
+    g.addEdge(1, 3, 30);
+    g.addEdge(2, 3, 40);
+    g.addEdge(2, 4, 50);
+
+    g.print();
+    return 0;
+}
