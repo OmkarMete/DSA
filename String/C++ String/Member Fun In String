@@ -1,0 +1,15 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+int main() {
+    string str ="helloworld";
+
+    cout << str.length() << endl;
+    cout << str[2] << endl;
+    cout << str.at(2) << endl;
+    cout << str.substr(1,5) << endl;
+    cout << str.substr(5) << endl;
+    cout << str.find('w');
+    return 0;
+}
