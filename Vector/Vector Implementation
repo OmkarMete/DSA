@@ -1,0 +1,20 @@
+#include<iostream>
+#include<cstring>
+#include<vector>
+using namespace std;
+
+int main() {
+    vector <int> v1 ;
+
+    cout <<"Size : "<< v1.size() << endl;
+    cout <<"Capacity : "<< v1.capacity() << endl;
+
+    v1.push_back(5);
+
+    cout <<"Size : "<< v1.size() << endl;
+    cout <<"Capacity : "<< v1.capacity() << endl;
+
+    v1.pop_back();
+    cout <<"Size : "<< v1.size() << endl;
+    return 0;
+}
