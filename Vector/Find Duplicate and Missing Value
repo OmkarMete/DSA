@@ -1,0 +1,33 @@
+#include<iostream>
+#include<cstring>
+#include<vector>
+using namespace std;
+
+vector<int> findError(vector<int>& num) {
+    vector<int> ans;
+    int n = num.size();
+    vector<bool> isPresent(n+1, false);
+
+    for(int i=0; i<n; i++) {
+        if(isPresent[num[i]]) {
+            ans.push_back(num[i]);
+        }
+
+        isPresent[num[i]] = true;
+    }
+
+    for(int i=1; i<isPresent.size(); i++) {
+        if(!isPresent[i]) {
+            ans.push_back(i);
+            break;
+        }
+    }
+    return ans;
+}
+int main() {
+    vector <int> v = {1,2,2,4};
+    vector<int> result = findError(v);
+
+    cout << "Duplicate: " << result[0] << ", Missing: " << result[1] << endl;
+    return 0;
+}
