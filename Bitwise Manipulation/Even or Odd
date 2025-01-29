@@ -1,0 +1,16 @@
+#include<iostream>
+#include<cstring>
+#include<vector>
+using namespace std;
+
+void oddOreven(int num) {
+    if(!(num & 1)) {
+        cout <<"Even Number ";
+    } else {
+        cout <<"Odd Number ";
+    }
+}
+int main() {
+    oddOreven(8);
+    return 0;
+}
