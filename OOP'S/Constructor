@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+
+class Car {
+public:
+    string name;
+    string color;
+
+public:
+    // Constructor
+    Car(string name, string color) {
+        cout <<"Constructor is Called..\n";
+        this->name = name;
+        this->color = color;
+    }
+
+    void start() {
+        cout <<"Car Has Start...\n";
+    }
+
+    void stop() {
+        cout <<"Car Has Stoped...\n";
+    }
+    string getName() {
+        return name;
+    }
+};
+int main() {
+    Car c1("Maruti 800", "white");
+    cout <<"Car Name : " << c1.getName() << endl;
+    return 0;
+}
