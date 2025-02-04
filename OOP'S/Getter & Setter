@@ -1,0 +1,42 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+class Student{
+    string name;
+    float cgpa;
+public:
+
+    void getPercentages() {
+        cout << (cgpa * 10) << endl;
+    }
+
+    // Setters
+    void setName(string nameVal) {
+        name = nameVal;
+    }
+
+    void setCgpa(float cgpaVal) {
+        cgpa = cgpaVal;
+    }
+
+    //Getters
+    string getName() {
+        return name;
+    }
+
+    float getCgpa() {
+        return cgpa;
+    }
+};
+
+int main() {
+    Student st;
+    st.setName("Omkar Mete");
+    st.setCgpa(8.14);
+
+    cout << st.getName() << endl;
+    cout << st.getCgpa() << endl;
+    
+    return 0;
+}
