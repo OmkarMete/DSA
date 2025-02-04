@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+
+class Student{
+    // Property
+    string name;
+    float cgpa;
+
+    //Method
+    void getPercentages() {
+        cout << (cgpa * 10) << endl;
+    }
+};
+
+int main() {
+    //Object
+    Student st;
+    cout << sizeof(st);
+    return 0;
+}
