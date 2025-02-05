@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+
+class Person {
+protected:
+    string name;
+    int age;
+
+public:
+    void setPersonDetails(string name, int age) {
+        this->name = name;
+        this->age = age;
+    }
+
+    void displayData() {
+        cout <<"Name : " << name << endl;
+        cout <<"Age : " << age << endl;
+    }
+};
+
+class Student : public Person {
+private:
+    int rollNo;
+    float marks;
+
+public:
+    void setDetails(int rollNo, float marks) {
+        this->rollNo = rollNo;
+        this->marks = marks;
+    }
+
+    void diaplayDetails() {
+        displayData();
+        cout <<"Roll Number : " << rollNo << endl;
+        cout <<"Marks : " << marks << endl;
+    }
+};
+
+int main() {
+    Student s;
+    s.setPersonDetails("Omkar Mete", 70);
+    s.setDetails(101,90);
+
+    cout <<"Student Details : " << endl;
+    s.diaplayDetails();
+    return 0;
+}
