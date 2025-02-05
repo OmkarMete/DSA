@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+
+class Animal {
+public:
+    void eat() {
+        cout <<"Eats..\n";
+    }
+
+    void breath() {
+        cout <<"breath..\n";
+    }
+};
+
+class Mamels : public Animal {
+public:
+    string bloodType = "Warm";
+    Mamels () {
+        bloodType = "warm";
+    }
+};
+
+class dog : public Mamels {
+public:
+    void tailTrap() {
+        cout <<"A dog tail \n";
+    }
+};
+
+int main() {
+    dog d1;
+
+    d1.eat();
+    d1.breath();
+    d1.tailTrap();
+    cout << d1.bloodType << endl;
+    return 0;
+}
