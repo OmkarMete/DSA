@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+
+class Animal {
+public:
+    string color;
+    void eat() {
+        cout <<"Eats...\n";
+    }
+    void breath() {
+        cout <<"Breath...\n";
+    }
+};
+
+class Fish : public Animal {
+public:
+    int fines;
+    void swims() {
+        cout <<"Swiming..\n";
+    }
+};
+
+int main() {
+    Fish f1;
+    f1.fines = 3;
+    cout << f1.fines << endl;
+    
+    f1.swims();
+    f1.breath();
+    f1.eat();
+    return 0;
+}
