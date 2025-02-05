@@ -1,0 +1,48 @@
+#include<iostream>
+using namespace std;
+
+class vehicle {
+public:
+    void start() {
+        cout <<"Vehicle Is Sterted...\n";
+    }
+    void stop() {
+        cout <<"Vehicle Is Stoped...\n";
+
+    }
+};
+
+class Car : public vehicle {
+public:
+    void horn() {
+        cout << "Car is honking." << endl;  
+    }
+    void puncher() {
+        cout <<"Car Is Puncher...\n";
+    }
+};
+
+class Truck : public vehicle{
+public:
+    void load() {
+        cout <<"Truck Is Loading Red Chandan..\n";
+    }
+};
+
+int main() {
+    Car c;
+    Truck t;
+
+    c.start();
+    c.horn();
+    c.stop();
+
+    cout << endl;
+
+
+    t.start();
+    t.load();
+    t.stop();
+
+    return 0;
+}
