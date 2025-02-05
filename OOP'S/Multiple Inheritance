@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+
+class Teacher {
+public:
+    int salary;
+    string subject;
+};
+
+class Student {
+public:
+    int rollNo;
+    float cgpa;
+};
+
+class TA : public Teacher, public Student {
+public:
+    string name;
+};
+
+int main() {
+    TA tal1;
+
+    tal1.name = "J.N.Ekatpure";
+    tal1.subject = "SMA";
+    tal1.cgpa = 9.1;
+
+    cout << tal1.name << endl;
+    cout << tal1.subject << endl;
+    cout << tal1.cgpa << endl;
+    return 0;
+}
