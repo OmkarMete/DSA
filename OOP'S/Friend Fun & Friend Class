@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+
+class A {
+    string secret = "Secret  Data..\n";
+    friend class B; // Friend Function
+    friend void revalSecret(A &obj);
+};
+
+class B {
+public:
+    void showSecret(A &obj) {
+        cout << obj.secret << endl;
+    }
+};
+
+// Friend Function
+void revalSecret(A &obj) {
+    cout<< obj.secret << endl; 
+
+}
+
+int main() {
+    A a1;
+    B b1;
+
+    b1.showSecret(a1);
+    revalSecret(a1);
+    return 0;
+}
