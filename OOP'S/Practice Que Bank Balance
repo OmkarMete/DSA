@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+
+class BankAccount {
+    double accountNumber;
+    float balance;
+public:
+    BankAccount(int accNo, double bal) {
+        accountNumber = accNo;
+        balance = bal;
+    }
+    void deposit(double amount) {
+        balance += amount;
+    }
+    void withdraw(double amount) {
+        if(amount <= balance) {
+            balance -= amount;
+        } else {
+            cout <<"No Sufficient Balance...\n";
+        }
+    }
+    double getBalance() {
+        return balance;
+    }
+};
+
+int main() {
+    BankAccount A(123456,5000.125);
+    // A.deposit(150);
+    A.withdraw(50000);
+    cout <<"Current Balance : Rs " << A.getBalance() << endl;
+    return 0;
+}
