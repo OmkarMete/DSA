@@ -1,0 +1,23 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int lastOccurence(vector<int> arr,int target, int i) {
+    if(i == arr.size()) {
+        cout <<"Element Not Found...";
+    }
+
+    int idxFound = lastOccurence(arr,target,i+1);
+
+    if(idxFound == -1 && arr[i] == target) {
+        cout <<"Found Element At Index : ";
+        return i;
+    }
+    return idxFound;
+}
+
+int main(){
+    vector<int> arr = {1,2,3,3,3,4};
+    cout << lastOccurence(arr,35,0);
+    return 0;
+}
