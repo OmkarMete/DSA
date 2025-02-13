@@ -1,0 +1,21 @@
+#include<iostream>
+using namespace std;
+
+int tilingProblem(int n) {
+    if(n >= 0 && n <= 3) {
+        return 1;
+    }
+    //Vertical Tile
+    int ans1 = tilingProblem(n-1);
+    //Horizontal Tile
+    int ans2 = tilingProblem(n-4);
+
+    return ans1 + ans2;
+}
+
+int main() {
+    int n = 5;
+
+    cout << "Total Ways to Fill a 2 x " << n << " box is : " << tilingProblem(n);
+    return 0;
+}
