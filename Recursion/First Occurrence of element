@@ -1,0 +1,20 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int firstOccurence(vector<int> arr,int i, int target) {
+    if(i == arr.size()) {
+        cout <<"Element Not Found...";
+    }
+    if(arr[i] == target) {
+        cout <<"Found Element At Index : ";
+        return i;
+    }
+    return firstOccurence(arr,i+1,target);
+}
+
+int main(){
+    vector<int> arr = {1,2,3,3,4,5};
+    cout << firstOccurence(arr,0,5);
+    return 0;
+}
