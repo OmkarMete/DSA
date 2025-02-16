@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+
+int binSearch(int arr[], int si, int ei, int key) {
+    if(si > ei) {
+        return -1;
+    }
+    
+    int mid = si + (ei - si) / 2;
+    if(arr[mid] == key) {
+        return mid;
+    } else if(arr[mid] > key) {
+        return binSearch(arr, si, mid - 1, key);
+    } else {
+        return binSearch(arr, mid + 1, ei, key);
+    }
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5, 6, 7};
+    int key = 5;
+    int index = binSearch(arr, 0, 6, key);
+    
+    if(index != -1) {
+        cout << "Element found at index: " << index << endl;
+    } else {
+        cout << "Element Not Found.." << endl;
+    }
+
+    return 0;
+}
